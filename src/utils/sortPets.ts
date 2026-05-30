@@ -11,9 +11,9 @@ export function sortPets(pets: Pet[], sortBy: SortOption): Pet[] {
     case 'name-desc':
       return sorted.sort((a, b) => b.title.localeCompare(a.title));
     case 'date-newest':
-      return sorted.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
+      return sorted.sort((a, b) => Date.parse(b.created) - Date.parse(a.created));
     case 'date-oldest':
-      return sorted.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt));
+      return sorted.sort((a, b) => Date.parse(a.created) - Date.parse(b.created));
     default:
       return sorted;
   }

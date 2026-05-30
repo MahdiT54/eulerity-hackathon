@@ -83,7 +83,7 @@ export function PetCard({ pet }: PetCardProps) {
   return (
     <Card $selected={selected}>
       <ImageWrap>
-        <Image src={pet.imageUrl} alt={pet.title} loading="lazy" />
+        <Image src={pet.url} alt={pet.title} loading="lazy" />
         <CheckboxLabel>
           <input
             type="checkbox"

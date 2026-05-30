@@ -21,7 +21,7 @@ Open [http://localhost:5173](http://localhost:5173).
 
 ## API
 
-The app fetches pets from `GET /pets`. In development, Vite serves mock data from `public/data/pets.json`.
+The app fetches pets from `GET /pets`, proxied in dev to [eulerity-hackathon.appspot.com/pets](https://eulerity-hackathon.appspot.com/pets).
 
 ## Features
 

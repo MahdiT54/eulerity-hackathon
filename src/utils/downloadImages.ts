@@ -15,7 +15,7 @@ async function downloadBlob(blob: Blob, filename: string) {
 
 export async function downloadSelectedPets(pets: Pet[]): Promise<void> {
   for (const pet of pets) {
-    const response = await fetch(pet.imageUrl);
+    const response = await fetch(pet.url);
     if (!response.ok) continue;
 
     const blob = await response.blob();

@@ -86,7 +86,7 @@ export function PetDetailPage() {
     );
   }
 
-  const createdDate = new Date(pet.createdAt).toLocaleDateString(undefined, {
+  const createdDate = new Date(pet.created).toLocaleDateString(undefined, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -96,10 +96,10 @@ export function PetDetailPage() {
     <>
       <BackLink to="/">&larr; Back to gallery</BackLink>
       <Layout>
-        <Image src={pet.imageUrl} alt={pet.title} />
+        <Image src={pet.url} alt={pet.title} />
         <div>
           <Title>{pet.title}</Title>
-          <Meta>Added {createdDate} � {formatBytes(pet.fileSizeBytes)}</Meta>
+          <Meta>Added {createdDate} · {formatBytes(pet.fileSizeBytes)}</Meta>
           <Description>{pet.description}</Description>
           <CheckboxRow>
             <input

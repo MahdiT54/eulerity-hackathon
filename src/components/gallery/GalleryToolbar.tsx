@@ -26,7 +26,7 @@ const ControlGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  align-items: center;
+  align-items: flex-end;
 `;
 
 const Label = styled.label`

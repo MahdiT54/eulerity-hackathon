@@ -1,6 +1,6 @@
 # Pet Gallery
 
-Front-end take-home project: browse a gallery of pets, search and sort results, select images for download, and view individual pet details.
+Users must be abl e to browse a gallery of pets, search and sort results, select images for download, and view individual pet details.
 
 ## Setup
 

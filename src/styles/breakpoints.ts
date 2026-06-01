@@ -4,6 +4,6 @@ export const breakpoints = {
 } as const;
 
 export const media = {
-  tablet: `(min-width: ${breakpoints.tablet})`,
-  desktop: `(min-width: ${breakpoints.desktop})`,
+  tablet: `@media (min-width: ${breakpoints.tablet})`,
+  desktop: `@media (min-width: ${breakpoints.desktop})`,
 } as const;

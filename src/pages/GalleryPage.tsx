@@ -34,9 +34,11 @@ export function GalleryPage() {
   const [sortBy, setSortBy] = useState<SortOption>('date-newest');
   const [page, setPage] = useState(1);
 
+  // preventing unnecessary re-renders
   const processedPets = useMemo(() => {
+    console.log(filterPets(pets, search));
     return sortPets(filterPets(pets, search), sortBy);
-  }, [pets, search, sortBy]);
+  }, [pets, search, sortBy]); // filter + sort runs only when pets, search, or sortBy changes
 
   const totalPages = Math.max(1, Math.ceil(processedPets.length / PAGE_SIZE));
 
@@ -51,7 +53,7 @@ export function GalleryPage() {
 
   useEffect(() => {
     if (page > totalPages) setPage(totalPages);
-  }, [page, totalPages]);
+  }, [page, totalPages]); // dependency arrays are fixed, so we don't need to use useCallback
 
   if (status === 'loading' || status === 'idle') {
     return <Spinner aria-label="Loading pets" />;

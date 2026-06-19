@@ -10,5 +10,7 @@ export async function fetchPets(): Promise<Pet[]> {
   }
 
   const records = (await response.json()) as PetApiRecord[];
+  console.log('records', records);
+  console.log('normalizePets', normalizePets(records));
   return normalizePets(records);
 }

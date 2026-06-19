@@ -9,7 +9,7 @@ import {
 import type { Pet } from '../types/pet';
 
 interface SelectionState {
-  selectedIds: Set<string>;
+  selectedIds: Set<string>; // space time complexity advantage
 }
 
 type SelectionAction =
@@ -43,14 +43,14 @@ interface SelectionContextValue {
   clearSelection: () => void;
   getSelectedPets: (pets: Pet[]) => Pet[];
   getEstimatedSize: (pets: Pet[]) => number;
-}
+} // all the context values we want to expose to the app // no need to export the reducer or the state!!
 
 const SelectionContext = createContext<SelectionContextValue | null>(null);
 
 export function SelectionProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(selectionReducer, { selectedIds: new Set<string>() });
 
-  const toggleSelection = useCallback((id: string) => {
+  const toggleSelection = useCallback((id: string) => { // useCallback keeps these functions stable for renders!!
     dispatch({ type: 'toggle', id });
   }, []);
 
@@ -62,7 +62,7 @@ export function SelectionProvider({ children }: { children: ReactNode }) {
     dispatch({ type: 'clear' });
   }, []); // dispatch keeps public API functions stable for useMemo dependency array
 
-  const value = useMemo<SelectionContextValue>(() => ({
+  const value = useMemo<SelectionContextValue>(() => ({ // rebuild context only if dependencies change
     selectedIds: state.selectedIds,
     selectedCount: state.selectedIds.size,
     isSelected: (id) => state.selectedIds.has(id),
@@ -74,15 +74,15 @@ export function SelectionProvider({ children }: { children: ReactNode }) {
       pets
         .filter((pet) => state.selectedIds.has(pet.id))
         .reduce((total, pet) => total + pet.fileSizeBytes, 0),
-  }), [state.selectedIds, toggleSelection, selectAll, clearSelection]);
+  }), [state.selectedIds, toggleSelection, selectAll, clearSelection]); // only if these change, we re-compute the value
 
-  return <SelectionContext.Provider value={value}>{children}</SelectionContext.Provider>;
-}
+  return <SelectionContext.Provider value={value}>{children}</SelectionContext.Provider>; // don't have to worry about prop drilling!!
+} // value={value} is the same as value={selectedIds: state.selectedIds, selectedCount: state.selectedIds.size, isSelected: (id) => state.selectedIds.has(id), toggleSelection, selectAll, clearSelection, getSelectedPets: (pets) => pets.filter((pet) => state.selectedIds.has(pet.id)), getEstimatedSize: (pets) => pets.filter((pet) => state.selectedIds.has(pet.id)).reduce((total, pet) => total + pet.fileSizeBytes, 0)}
 
 export function useSelection() {
-  const context = useContext(SelectionContext);
+  const context = useContext(SelectionContext); // useContext is a hook that returns the context value
   if (!context) {
     throw new Error('useSelection must be used within SelectionProvider');
   }
   return context;
-}
+} // useSelection is a hook that returns the context value // no need to export the context value!!

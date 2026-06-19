@@ -50,10 +50,10 @@ export function usePets(): UsePetsResult {
     }
 
     load();
-    return () => {
+    return () => { // unmount? time for cleanup
       cancelled = true;
-    };
+    }; // cleanup function to set cancelled to true when the component unmounts
   }, [reloadKey]);
 
-  return { pets, status, error, refetch };
+  return { pets, status, error, refetch }; // hook returns the state and the functions to update the state
 }

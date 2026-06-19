@@ -35,8 +35,10 @@ export function GalleryPage() {
   const [sortBy, setSortBy] = useState<SortOption>('date-newest');
   const [page, setPage] = useState(1);
 
+
+
   // preventing unnecessary re-renders
-  const processedPets = useMemo(() => {
+  const processedPets = useMemo(() => { 
     return sortPets(filterPets(pets, search), sortBy);
   }, [pets, search, sortBy]); // filter + sort runs only when pets, search, or sortBy changes
 

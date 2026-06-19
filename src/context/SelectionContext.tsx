@@ -20,15 +20,15 @@ type SelectionAction =
 function selectionReducer(state: SelectionState, action: SelectionAction): SelectionState {
   switch (action.type) {
     case 'toggle': {
-      const next = new Set(state.selectedIds);
-      if (next.has(action.id)) next.delete(action.id);
-      else next.add(action.id);
+      const next = new Set(state.selectedIds); // create a new set from the current selectedIds
+      if (next.has(action.id)) next.delete(action.id); // if the id is already in the set, remove it
+      else next.add(action.id); // if the id is not in the set, add it (easy removing and adding!)
       return { selectedIds: next };
     }
     case 'selectAll':
-      return { selectedIds: new Set<string>(action.ids) };
+      return { selectedIds: new Set<string>(action.ids) }; // create a new set from all the ids
     case 'clear':
-      return { selectedIds: new Set<string>() };
+      return { selectedIds: new Set<string>() }; // create a new set with no ids
     default:
       return state;
   }
@@ -60,7 +60,7 @@ export function SelectionProvider({ children }: { children: ReactNode }) {
 
   const clearSelection = useCallback(() => {
     dispatch({ type: 'clear' });
-  }, []);
+  }, []); // dispatch keeps public API functions stable for useMemo dependency array
 
   const value = useMemo<SelectionContextValue>(() => ({
     selectedIds: state.selectedIds,

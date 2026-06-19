@@ -40,7 +40,7 @@ const Label = styled.label`
 interface GalleryToolbarProps {
   search: string;
   sortBy: SortOption;
-  onSearchChange: (value: string) => void;
+  onSearchChange: (value: string) => void; // callback function to handle search change
   onSortChange: (value: SortOption) => void;
   onSelectAll: () => void;
   onClearSelection: () => void;

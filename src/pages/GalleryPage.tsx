@@ -11,24 +11,25 @@ import { usePets } from '../hooks/usePets';
 import { filterPets } from '../utils/filterPets';
 import { sortPets, type SortOption } from '../utils/sortPets';
 
-const PAGE_SIZE = 12;
 
 const PageTitle = styled.h1`
-  margin: 0 0 0.35rem;
-  font-size: clamp(1.6rem, 3vw, 2rem);
+margin: 0 0 0.35rem;
+font-size: clamp(1.6rem, 3vw, 2rem);
 `;
 
 const Subtitle = styled.p`
-  margin: 0 0 1.5rem;
-  color: ${({ theme }) => theme.colors.textMuted};
+margin: 0 0 1.5rem;
+color: ${({ theme }) => theme.colors.textMuted};
 `;
 
 const Spacer = styled.div`
-  height: 5rem;
+height: 5rem;
 `;
 
+const PAGE_SIZE = 12;
+
 export function GalleryPage() {
-  const { pets, status, error, refetch } = usePets();
+  const { pets, status, error, refetch } = usePets(); 
   const { selectAll, clearSelection } = useSelection();
   const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState<SortOption>('date-newest');
@@ -36,7 +37,6 @@ export function GalleryPage() {
 
   // preventing unnecessary re-renders
   const processedPets = useMemo(() => {
-    console.log(filterPets(pets, search));
     return sortPets(filterPets(pets, search), sortBy);
   }, [pets, search, sortBy]); // filter + sort runs only when pets, search, or sortBy changes
 

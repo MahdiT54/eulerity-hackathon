@@ -76,7 +76,7 @@ interface PetCardProps {
   pet: Pet;
 }
 
-export function PetCard({ pet }: PetCardProps) {
+export function PetCard({ pet }: PetCardProps) { // destructure the pet object from the props
   const { isSelected, toggleSelection } = useSelection();
   const selected = isSelected(pet.id);
 

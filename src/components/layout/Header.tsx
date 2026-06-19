@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-import { useSelection } from '../../context/SelectionContext';
-import { media } from '../../styles/breakpoints';
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+import { useSelection } from "../../context/SelectionContext";
+import { media } from "../../styles/breakpoints";
 
 const Bar = styled.header`
   background: ${({ theme }) => theme.colors.surface};
@@ -67,7 +67,9 @@ export function Header() {
       <Inner>
         <Logo to="/">Pet Gallery</Logo>
         <Nav>
-          <StyledLink to="/" end>Gallery</StyledLink>
+          <StyledLink to="/" end>
+            Gallery
+          </StyledLink>
           <StyledLink to="/about">About</StyledLink>
           {selectedCount > 0 ? <Badge>{selectedCount} selected</Badge> : null}
         </Nav>
